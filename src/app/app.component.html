@@ -61,19 +61,25 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <p><label for="isBeginner">I'm a beginner <input (change)="toggleBeginner()" type="checkbox" id="isBeginner"></label></p>
+      @if (isBeginner) {
+        <app-champions-for-beginner></app-champions-for-beginner>
+      } @else {
+        <app-champions-of-the-week></app-champions-of-the-week>
+      }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
         @for (item of [
-          { title: 'Explore the Docs', link: 'https://angular.dev' },
-          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
-          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },
-          { title: 'Riot Games developer portal', link: 'https://developer.riotgames.com/' }
+          { title: 'Explore the Docs', link: 'https://angular.dev', color:'first' },
+          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials', color: 'second' },
+          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli', color: 'third' },
+          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service',color:'first' },
+          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools',color:'second' },
+          { title: 'Riot Games developer portal', link: 'https://developer.riotgames.com/',color:'third' },
         ]; track item.title) {
-          <app-link-item [title]="item.title" [link]="item.link"></app-link-item>
+          <app-link-item [title]="item.title" [link]="item.link" [color]="item.color"></app-link-item>
         }
       </div>
       <div class="social-links">
