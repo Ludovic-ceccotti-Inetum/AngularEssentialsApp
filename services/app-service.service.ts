@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { Component } from '@angular/core';
 import {Champion} from '../models/Champion';
 import {Position} from '../models/Position';
 import {ChampionType} from '../models/ChampionType';
+import {FetchingServiceService} from './fetching-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServiceService {
+
+  private fetchingService = inject(FetchingServiceService);
 
   private BEGINNER_CHAMPS: Champion[] = [
     new Champion('Malphite',ChampionType.TANK, [Position.TOP,Position.MID]),
@@ -33,5 +36,7 @@ export class AppServiceService {
     return isBeginner ? this.BEGINNER_CHAMPS : this.CHAMPS_OF_THE_WEEK;
   }
 
-  constructor() { }
+  constructor() {
+    console.log(this.fetchingService.fetchHeroesOfTheWeek());
+  }
 }

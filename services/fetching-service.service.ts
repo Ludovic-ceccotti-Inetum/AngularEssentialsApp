@@ -7,16 +7,18 @@ import {HttpClient} from '@angular/common/http';
 export class FetchingServiceService {
 private RIOT_HEADER: String = 'X-Riot-Token'
 private RIOT_TOKEN: String = 'RGAPI-bba8af16-a395-4540-9ee9-de348f5e930b';
-  constructor() { }
+private CHAMPIONS_ROTATION_URL = 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations';
+  constructor(private http: HttpClient) { }
 
-  fetchHeroesOfTheWeek() {
-    let champIds =
-    HttpClient.('/api/config', {
+  fetchHeroesOfTheWeek(): any  {
+    let responseBody: any;
+     this.http.get(this.CHAMPIONS_ROTATION_URL, {
       headers: {
-        'X-Riot-Token': this.RIOT_TOKEN,
+        'X-Debug-Level': this.CHAMPIONS_ROTATION_URL,
       }
-    }).subscribe(config => {
-      // ...
+    }).subscribe(response => {
+      responseBody = response;
     });
+     return responseBody;
   }
 }
