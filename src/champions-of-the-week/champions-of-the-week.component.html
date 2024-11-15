@@ -1,4 +1,11 @@
-<h2>{{title}}</h2>
-@for (champion of champions; track champion.name) {
-  <p>{{champion.name}} ({{champion.type}}) => played : {{champion.positions.toString()}}</p>
-}
+<div>
+  <h2>{{title}}</h2>
+  @if (champions.length > 0) {
+    @for (champion of champions; track champion.name) {
+      <p>{{champion.name}} ({{champion.type}}) => played : {{champion.positions.toString()}}</p>
+    }
+  } @else {
+    <p>No champion found!</p>
+  }
+</div>
+

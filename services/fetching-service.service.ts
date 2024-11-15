@@ -12,13 +12,17 @@ private CHAMPIONS_ROTATION_URL = 'https://euw1.api.riotgames.com/lol/platform/v3
 
   fetchHeroesOfTheWeek(): any  {
     let responseBody: any;
-     this.http.get(this.CHAMPIONS_ROTATION_URL, {
-      headers: {
-        'X-Debug-Level': this.CHAMPIONS_ROTATION_URL,
-      }
-    }).subscribe(response => {
-      responseBody = response;
-    });
-     return responseBody;
+    try {
+      this.http.get(this.CHAMPIONS_ROTATION_URL, {
+        headers: {
+          'X-Debug-Level': this.CHAMPIONS_ROTATION_URL,
+        }
+      }).subscribe(response => {
+        responseBody = response;
+      });
+      return responseBody;
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

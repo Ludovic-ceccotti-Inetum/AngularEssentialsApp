@@ -62,10 +62,11 @@
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
       <p><label for="isBeginner">I'm a beginner <input (change)="toggleBeginner()" type="checkbox" id="isBeginner"></label></p>
+      <app-champion-search-bar  (searchValue)="setSearchChampion($event)" />
       @if (isBeginner) {
         <app-champions-for-beginner></app-champions-for-beginner>
       } @else {
-        <app-champions-of-the-week></app-champions-of-the-week>
+        <app-champions-of-the-week [searchOptions]="searchOptions"></app-champions-of-the-week>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>

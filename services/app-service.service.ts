@@ -28,6 +28,11 @@ export class AppServiceService {
     new Champion('Riven', ChampionType.BRUISER, [Position.TOP,Position.JUNGLE])
   ];
 
+  filterChampionsByName(champions: Champion[], name : String): Champion[] {
+    if(name.length === 0) return champions;
+   return champions.filter(champion => champion.name.toLowerCase() === name.toLowerCase());
+  }
+
   toggleBeginner(isBeginner:boolean): boolean {
     return !isBeginner
   }

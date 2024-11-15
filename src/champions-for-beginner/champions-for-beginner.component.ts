@@ -13,6 +13,12 @@ import {AppServiceService} from '../../services/app-service.service';
 })
 export class ChampionsForBeginnerComponent {
   title: String = 'Champions to start on the summoner rift';
-  private appService = inject(AppServiceService);
-  champions: Champion [] = this.appService.loadChampions(true);
+  private appService: AppServiceService;
+  champions: Champion [];
+
+  constructor() {
+    this.appService = inject(AppServiceService);
+    this.champions = this.appService.loadChampions(true);
+  }
+
 }

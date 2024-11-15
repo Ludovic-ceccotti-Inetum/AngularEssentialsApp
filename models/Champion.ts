@@ -3,15 +3,15 @@ import {Position} from './Position';
 
 export class Champion {
   private _name: String;
-  private _type: ChampionType;
+  private _type: ChampionType | null;
   private _positions: Position [];
 
-
-  constructor(name: String, type: ChampionType, positions: Position[]) {
-    this._name = name;
-    this._type = type;
-    this._positions = positions;
+  constructor(name: String | null = '', type: ChampionType | null = null, positions: Position[] | null = []) {
+    this._name = name ?? '';
+    this._type = type ?? null;
+    this._positions = positions ?? [];
   }
+
 
 
   get name(): String {
@@ -23,7 +23,7 @@ export class Champion {
   }
 
   get type(): ChampionType {
-    return this._type;
+    return <ChampionType>this._type ?? null;
   }
 
   set type(value: ChampionType) {
