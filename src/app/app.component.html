@@ -62,7 +62,8 @@
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
       <p><label for="isBeginner">I'm a beginner <input (change)="toggleBeginner()" type="checkbox" id="isBeginner"></label></p>
-      <app-champion-search-bar  (searchValue)="setSearchChampion($event)" />
+      <!--<app-champion-search-bar  (searchValue)="setSearchChampion($event)" />-->
+      <app-search-champion-form (payload)="setSearchChampion($event)"></app-search-champion-form>
       @if (isBeginner) {
         <app-champions-for-beginner></app-champions-for-beginner>
       } @else {

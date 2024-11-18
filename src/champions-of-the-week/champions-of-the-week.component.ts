@@ -20,15 +20,19 @@ export class ChampionsOfTheWeekComponent implements OnChanges{
 
   constructor() {
     this.appService = inject(AppServiceService);
-    this.champions = this.appService.loadChampions(false)
+    this.champions = this.appService.loadChampions(false);
   }
 
 
+clearResult(): void {
+    this.searchOptions = {};
+    this.champions = this.appService.loadChampions(false);
+}
+
 
   ngOnChanges(): void {
-    console.log(this.searchOptions)
-    if (this.searchOptions?.name.length > 0) {
-      this.champions = this.appService.filterChampionsByName(this.champions, this.searchOptions.name);
+    if (this.searchOptions?.name?.length > 0 || this.searchOptions.positions?.length > 0  || this.searchOptions.type?.length > 0) {
+      this.champions = this.appService.findChampions(this.champions,this.searchOptions)
     } else {
       this.champions = this.appService.loadChampions(false);
     }

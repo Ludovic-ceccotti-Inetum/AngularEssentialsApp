@@ -5,12 +5,14 @@ import {ChampionsOfTheWeekComponent} from '../champions-of-the-week/champions-of
 import {ChampionsForBeginnerComponent} from '../champions-for-beginner/champions-for-beginner.component';
 import {ChampionSearchBarComponent} from '../champion-search-bar/champion-search-bar.component';
 import {AppServiceService} from '../../services/app-service.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SearchChampionFormComponent} from '../search-champion-form/search-champion-form.component';
 import {Champion} from '../../models/Champion';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LinkItemComponent,ChampionsOfTheWeekComponent, ChampionsForBeginnerComponent,ChampionSearchBarComponent],
+  imports: [RouterOutlet,LinkItemComponent,ChampionsOfTheWeekComponent, ChampionsForBeginnerComponent,ChampionSearchBarComponent, SearchChampionFormComponent, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -24,10 +26,14 @@ export class AppComponent {
   this.isBeginner =  this.appService.toggleBeginner(this.isBeginner)
   }
 
-  setSearchChampion(value: String) {
+  /*setSearchChampion(value: String) {
     this.searchOptions = {
       name: value.trim()
     }
+  }*/
+
+  setSearchChampion(payload: Champion):void {
+    this.searchOptions = payload;
   }
 
 }

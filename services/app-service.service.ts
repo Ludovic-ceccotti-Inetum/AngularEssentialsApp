@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import { Component } from '@angular/core';
 import {Champion} from '../models/Champion';
 import {Position} from '../models/Position';
-import {ChampionType} from '../models/ChampionType';
+import {ChampionType, findChampionTypeByDescription} from '../models/ChampionType';
 import {FetchingServiceService} from './fetching-service.service';
 
 @Injectable({
@@ -28,9 +28,28 @@ export class AppServiceService {
     new Champion('Riven', ChampionType.BRUISER, [Position.TOP,Position.JUNGLE])
   ];
 
+  findChampions(champions: Champion[],searchOptions : Champion) : Champion[] {
+    if(!searchOptions) return champions;
+    if(searchOptions.name.trim().length > 0) champions = this.filterChampionsByName(champions,searchOptions.name);
+    if(searchOptions?.type?.trim().length > 0) champions = this.filterChampionsByType(champions,searchOptions.type.trim());
+    if(searchOptions?.positions?.length > 0) champions = this.filterChampionsByPosition(champions,searchOptions.positions);
+
+    return champions;
+  }
+
   filterChampionsByName(champions: Champion[], name : String): Champion[] {
     if(name.length === 0) return champions;
    return champions.filter(champion => champion.name.toLowerCase() === name.toLowerCase());
+  }
+
+  filterChampionsByPosition(champions: Champion[], positions: Position[]): Champion[] {
+    return champions.filter(champion =>
+      champion.positions.some(position => positions.includes(position))
+    );
+  }
+
+  filterChampionsByType(champions: Champion[], typeDescription: string) : Champion[] {
+    return champions.filter(champion => champion.type === findChampionTypeByDescription(typeDescription));
   }
 
   toggleBeginner(isBeginner:boolean): boolean {
