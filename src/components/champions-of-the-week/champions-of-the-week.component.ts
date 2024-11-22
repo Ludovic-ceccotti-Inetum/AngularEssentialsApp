@@ -1,6 +1,6 @@
 import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {Champion} from '../../models/Champion';
-import {AppServiceService} from '../../services/app-service.service';
+import {Champion} from '../../../models/Champion';
+import {AppServiceService} from '../../../services/app-service.service';
 
 @Component({
   selector: 'app-champions-of-the-week',

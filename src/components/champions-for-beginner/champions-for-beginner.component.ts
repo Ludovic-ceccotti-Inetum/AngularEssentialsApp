@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
-import {Champion} from '../../models/Champion';
-import {Position} from '../../models/Position';
-import {ChampionType} from '../../models/ChampionType';
-import {AppServiceService} from '../../services/app-service.service';
+import {Champion} from '../../../models/Champion';
+import {Position} from '../../../models/Position';
+import {ChampionType} from '../../../models/ChampionType';
+import {AppServiceService} from '../../../services/app-service.service';
 
 @Component({
   selector: 'app-champions-for-beginner',

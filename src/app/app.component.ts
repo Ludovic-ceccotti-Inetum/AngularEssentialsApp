@@ -1,18 +1,16 @@
 import {Component, inject} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {LinkItemComponent} from '../link-item/link-item.component';
-import {ChampionsOfTheWeekComponent} from '../champions-of-the-week/champions-of-the-week.component';
-import {ChampionsForBeginnerComponent} from '../champions-for-beginner/champions-for-beginner.component';
-import {ChampionSearchBarComponent} from '../champion-search-bar/champion-search-bar.component';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {LinkItemComponent} from '../components/link-item/link-item.component';
 import {AppServiceService} from '../../services/app-service.service';
-import {ReactiveFormsModule} from '@angular/forms';
-import {SearchChampionFormComponent} from '../search-champion-form/search-champion-form.component';
 import {Champion} from '../../models/Champion';
+import {LoginPageComponent} from '../components/pages/login-page/login-page.component';
+import {ChampionsPageComponent} from '../components/pages/champions-page/champions-page.component';
+import {MyProfilePageComponent} from '../components/pages/my-profile-page/my-profile-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LinkItemComponent,ChampionsOfTheWeekComponent, ChampionsForBeginnerComponent,ChampionSearchBarComponent, SearchChampionFormComponent, ReactiveFormsModule],
+  imports: [RouterOutlet,LinkItemComponent, RouterLink, RouterLinkActive, MyProfilePageComponent, LoginPageComponent, ChampionsPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -25,12 +23,6 @@ export class AppComponent {
   toggleBeginner() {
   this.isBeginner =  this.appService.toggleBeginner(this.isBeginner)
   }
-
-  /*setSearchChampion(value: String) {
-    this.searchOptions = {
-      name: value.trim()
-    }
-  }*/
 
   setSearchChampion(payload: Champion):void {
     this.searchOptions = payload;

@@ -61,14 +61,16 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <h1>Angular Router App</h1>
+      <nav>
+        <ul>
+          <li><a routerLink="/champions" routerLinkActive="active" ariaCurrentWhenActive="page">See Champions</a></li>
+          <li><a routerLink="/my-profile" routerLinkActive="active" ariaCurrentWhenActive="page">My profile</a></li>
+        </ul>
+      </nav>
+      <!-- The routed views render in the <router-outlet>-->
+      <router-outlet></router-outlet>
       <p><label for="isBeginner">I'm a beginner <input (change)="toggleBeginner()" type="checkbox" id="isBeginner"></label></p>
-      <!--<app-champion-search-bar  (searchValue)="setSearchChampion($event)" />-->
-      <app-search-champion-form (payload)="setSearchChampion($event)"></app-search-champion-form>
-      @if (isBeginner) {
-        <app-champions-for-beginner></app-champions-for-beginner>
-      } @else {
-        <app-champions-of-the-week [searchOptions]="searchOptions"></app-champions-of-the-week>
-      }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
