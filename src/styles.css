@@ -97,6 +97,14 @@ main {
   gap: 1.25rem;
 }
 
+.pill-group-row {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
 .pill {
   display: flex;
   align-items: center;
