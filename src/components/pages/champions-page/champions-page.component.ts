@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ChampionFetchingService} from '../../../../services/backend/champions/champion-fetching.service';
 
 @Component({
   selector: 'app-champions-page',
@@ -9,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class ChampionsPageComponent {
 
+  private championFetchingService: ChampionFetchingService;
+
+
+  constructor(championFetchingService: ChampionFetchingService) {
+    this.championFetchingService = championFetchingService;
+    this.championFetchingService.getAllChampions();
+  }
 }

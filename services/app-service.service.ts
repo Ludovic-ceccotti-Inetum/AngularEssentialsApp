@@ -4,13 +4,23 @@ import {Champion} from '../models/Champion';
 import {Position} from '../models/Position';
 import {ChampionType, findChampionTypeByDescription} from '../models/ChampionType';
 import {FetchingServiceService} from './fetching-service.service';
+import {LanguageService} from './language.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServiceService {
 
-  private fetchingService = inject(FetchingServiceService);
+  private appFetchingService: FetchingServiceService;
+  private languageService: LanguageService;
+
+  constructor(appFecthingService: FetchingServiceService, languageService:LanguageService) {
+    this.appFetchingService = appFecthingService;
+    this.languageService = languageService;
+    if (!sessionStorage.getItem('languageOptions')) {
+      this.languageService.storeLanguage();
+    }
+  }
 
   private BEGINNER_CHAMPS: Champion[] = [
     new Champion('Malphite',ChampionType.TANK, [Position.TOP,Position.MID]),
@@ -58,9 +68,5 @@ export class AppServiceService {
 
   loadChampions(isBeginner: boolean): Champion[] {
     return isBeginner ? this.BEGINNER_CHAMPS : this.CHAMPS_OF_THE_WEEK;
-  }
-
-  constructor() {
-    console.log(this.fetchingService.fetchHeroesOfTheWeek());
   }
 }

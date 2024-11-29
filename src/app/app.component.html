@@ -63,6 +63,7 @@
       <nav class="pill-group-row">
           @for (link of [
             {title: 'See champions', link: '/champions'},
+            {title: 'See objects', link: '/objects'},
             {title: 'My profile', link: 'my-profile' }
           ]; track link.title) {
             <app-link-item [title]="link.title" [link]="link.link" [isRouterLink]="true"></app-link-item>
