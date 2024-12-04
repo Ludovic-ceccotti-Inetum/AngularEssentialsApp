@@ -20,6 +20,17 @@ export class AuthService {
   return this.loginService.login(payload);
 }
 
+getTokenFromStorage(): LoginResponse | null {
+    let token: LoginResponse | null = null;
+  console.log('Looking credentials for token from SessionStorage first');
+    if( sessionStorage.getItem('token') !== null  && sessionStorage.getItem('token')) {
+      token = JSON.parse(<string>sessionStorage.getItem('token'));
+    } else  if (localStorage.getItem('token') !== null && localStorage.getItem('token') ) {
+      token = JSON.parse(<string>localStorage.getItem('token'));
+    }
+    return token;
+}
+
   getBasicCredentialsFromStorage(): string | null{
     let username: string;
     let password: string;
