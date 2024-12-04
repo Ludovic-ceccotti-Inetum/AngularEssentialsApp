@@ -6,6 +6,8 @@ export class BackendProperties {
 
   private _OBJECTS_ENDPOINT: string = '/objects'
 
+  private _LOGIN_ENDPOINT: string = '/login';
+
   private _AVAILABLE_LANGUAGES_ENDPOINT: string = '/languages/available';
 
   private _RIOT_HEADER: string = 'X-Riot-Token'
@@ -36,6 +38,10 @@ export class BackendProperties {
     return this._OBJECTS_ENDPOINT;
   }
 
+  get LOGIN_ENDPOINT(): string {
+    return this._LOGIN_ENDPOINT;
+  }
+
 
   get AVAILABLE_LANGUAGES_ENDPOINT(): string {
     return this._AVAILABLE_LANGUAGES_ENDPOINT;
@@ -51,6 +57,10 @@ export class BackendProperties {
 
   getAllChampionsUrl(): string {
     return `${this.BASE_URL.concat(this.CHAMPIONS_ENDPOINT)}`
+  }
+
+  getLoginUrl(): string {
+    return `${this.BASE_URL.concat(this.LOGIN_ENDPOINT)}`
   }
 
   getChampionByNameUrl(name: string) : string {

@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {LoginService} from './backend/login/login.service';
+import {LoginRequest} from '../models/backend/LoginRequest';
+import {LoginResponse} from '../models/backend/LoginResponse';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  private loginService: LoginService;
+
+  constructor(loginService: LoginService) {
+    this.loginService = loginService;
+  }
+
+ createTokenFromLogin(payload: LoginRequest):Observable<LoginResponse | null> {
+  return this.loginService.login(payload);
+}
 
   getBasicCredentialsFromStorage(): string | null{
     let username: string;

@@ -1,1 +1,25 @@
-<p>login-page works!</p>
+<div class="login-container">
+  <h2>{{pageTitle}}</h2>
+  <div class="login-form">
+    <form (submit)="$event.preventDefault()">
+      <!--<p><label for="login-username">{{userNameLabel}}</label></p>-->
+      @if (!userName.untouched && userName.errors && userName.errors['required']) { <p><span>{{userNameLabel}}  is required</span></p> }
+      @if (!userName.untouched && userName.errors && userName.hasError('minlength')) { <p><span>{{userNameLabel}}  must be at least {{userName.getError('minlength').requiredLength}} characters long</span></p> }
+      @if (!userName.untouched && userName.errors && userName.hasError('maxlength')) { <p><span>{{userNameLabel}}  must be at most {{userName.getError('maxlength').requiredLength}} characters long</span></p> }
+        <p>
+          <input id="login-username" [formControl]="userName" (input)="onUsernameUpdate($event)"  [placeholder]="userNameLabel">
+        </p>
+      <!--<p><label for="login-password">{{passwordlabel}}</label></p>-->
+      @if (!password.untouched && password.errors && password.errors['required']) { <p><span>{{passwordlabel}}  is required</span></p> }
+      @if (!password.untouched && password.errors && password.hasError('minlength')) { <p><span>{{passwordlabel}}  must be at least {{password.getError('minlength').requiredLength}} characters long</span></p> }
+      @if (!password.untouched && password.errors && password.hasError('maxlength')) { <p><span>{{passwordlabel}}  must be at most {{password.getError('maxlength').requiredLength}} characters long</span></p> }
+        <p>
+          <input id="login-password" [formControl]="password" autocomplete="current-password" (input)="onPasswordUpdate($event)" type="password" [placeholder]="passwordlabel">
+        </p>
+      <p><button (click)="login()"  class="login-submit-button" [disabled]="!userName.valid || !password.valid">Submit</button></p>
+      @if (wrongLogin) {
+        <p><span>Wrong username or password</span></p>
+      }
+    </form>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+/**TDO import style.css **/
+
+.login-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-container h2 {
+  color: #E91E63;
+}
+
+.login-form {
+
+}
+
+.login-form input {
+  margin-top: 10px;
+  appearance: none;
+  border: none;
+  outline: none;
+  border-bottom: .2em solid oklch(61.42% 0.238 15.34);
+  background: rgba(oklch(61.42% 0.238 15.34), .2);
+  border-radius: .2em .2em 0 0;
+  padding: .4em;
+  color: oklch(61.42% 0.238 15.34);
+}
+
+.login-form span {
+  color: #E91E63;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.login-form button {
+  margin-top: 10px;
+  appearance: none;
+  border: .2em solid #E91E63;
+  background: hsl(0 0 0/0);
+  padding: .85em 1.5em;
+  color: #E91E63;
+  border-radius: 2em;
+  transition: 1s;
+
+  &:hover, &:focus, &:active {
+    background: #E91E63;
+    color: #fff;
+  }
+}
