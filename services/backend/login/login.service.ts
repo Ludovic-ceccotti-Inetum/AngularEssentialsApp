@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {BackendProperties} from '../../../models/BackendProperties';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {LoginRequest} from '../../../models/backend/LoginRequest';
+import {LoginRequest} from '../../../models/backend/login/LoginRequest';
 import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 import {Observable} from 'rxjs';
-import {LoginResponse} from '../../../models/backend/LoginResponse';
+import {LoginResponse} from '../../../models/backend/login/LoginResponse';
 
 @Injectable({
   providedIn: 'root'

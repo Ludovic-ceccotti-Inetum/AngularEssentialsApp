@@ -3,8 +3,8 @@ import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import {AuthService} from '../../../../services/auth.service';
-import {LoginRequest} from '../../../../models/backend/LoginRequest';
+import {AuthService} from '../../../../services/auth/auth.service';
+import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import { Router} from '@angular/router';
 
 @Component({

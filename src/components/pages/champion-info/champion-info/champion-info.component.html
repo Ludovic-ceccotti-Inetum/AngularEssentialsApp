@@ -1,0 +1,26 @@
+<div class="champion-info-container">
+  @if (champion) {
+    <h3 class="champion-info-name">{{champion.name}}</h3>
+    <p>{{champion.title}}</p>
+    <img [ngSrc]="championPic" width="800" height="600">
+
+    <h4>{{champion.name}}'s story</h4>
+    <p>{{champion.blurb}}</p>
+
+    <h4>Stats</h4>
+    <h4>Tags:</h4>
+    @for (tag of champion.tags; track tag) {
+      <p>{{tag}}</p>
+    }
+
+    <h4>If {{champion.name}} is your ally: </h4>
+    @for (tip of champion.allytips; track tip) {
+      <p>{{tip}}</p>
+    }
+
+    <h4>If {{champion.name}} is your opponent: </h4>
+    @for (tip of champion.enemytips; track tip) {
+      <p>{{tip}}</p>
+    }
+  }
+</div>

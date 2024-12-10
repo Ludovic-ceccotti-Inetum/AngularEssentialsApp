@@ -1,10 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import { Component } from '@angular/core';
-import {Champion} from '../models/Champion';
-import {Position} from '../models/Position';
-import {ChampionType, findChampionTypeByDescription} from '../models/ChampionType';
-import {FetchingServiceService} from './fetching-service.service';
-import {LanguageService} from './language.service';
+import {Champion} from '../../models/Champion';
+import {Position} from '../../models/Position';
+import {ChampionType, findChampionTypeByDescription} from '../../models/ChampionType';
+import {FetchingServiceService} from '../fetching-service.service';
+import {LanguageService} from '../languages/language.service';
 
 @Injectable({
   providedIn: 'root'

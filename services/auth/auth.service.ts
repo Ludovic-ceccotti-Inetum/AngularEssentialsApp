@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginService} from './backend/login/login.service';
-import {LoginRequest} from '../models/backend/LoginRequest';
-import {LoginResponse} from '../models/backend/LoginResponse';
+import {LoginService} from '../backend/login/login.service';
+import {LoginRequest} from '../../models/backend/login/LoginRequest';
+import {LoginResponse} from '../../models/backend/login/LoginResponse';
 import {Observable} from 'rxjs';
 
 @Injectable({

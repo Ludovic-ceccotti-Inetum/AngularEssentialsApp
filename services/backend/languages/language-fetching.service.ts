@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BackendProperties} from '../../../models/BackendProperties';
 import {HttpClient} from '@angular/common/http';
-import {LanguageResponse} from '../../../models/backend/LanguageResponse';
+import {LanguageResponse} from '../../../models/backend/languages/LanguageResponse';
 import {Observable} from 'rxjs';
 
 @Injectable({

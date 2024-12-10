@@ -1,7 +1,7 @@
 import {Component, output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Position, findPositionByKey} from '../../../models/Position';
-import {AppServiceService} from '../../../services/app-service.service';
+import {AppServiceService} from '../../../services/app/app-service.service';
 import {Champion} from '../../../models/Champion';
 import {ChampionType, findChampionTypeByKey} from '../../../models/ChampionType';
 

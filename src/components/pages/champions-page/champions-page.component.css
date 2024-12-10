@@ -1,0 +1,12 @@
+.champions-container {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.champions-container p {
+  color: #E91E63;
+}
+
+.champions-container p:hover {
+  color: oklch(47.66% 0.246 305.88);
+}

@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {LinkItemComponent} from '../components/link-item/link-item.component';
-import {AppServiceService} from '../../services/app-service.service';
+import {AppServiceService} from '../../services/app/app-service.service';
 import {Champion} from '../../models/Champion';
 import {LoginPageComponent} from '../components/pages/login-page/login-page.component';
 import {ChampionsPageComponent} from '../components/pages/champions-page/champions-page.component';

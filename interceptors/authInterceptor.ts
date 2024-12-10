@@ -1,8 +1,8 @@
 import {HttpEvent, HttpHandlerFn, HttpRequest} from '@angular/common/http';
 import {inject} from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {AuthService} from '../services/auth/auth.service';
 import {Observable, throwError} from 'rxjs';
-import {LoginResponse} from '../models/backend/LoginResponse';
+import {LoginResponse} from '../models/backend/login/LoginResponse';
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   // Don't add token if we login for the first time
