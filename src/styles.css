@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :host {
-  --bright-blue: oklch(51.01% 0.274 263.83);
+  --bright-blue: oklch(0.51 0.274 263.834);
   --electric-violet: oklch(53.18% 0.28 296.97);
   --french-violet: oklch(47.66% 0.246 305.88);
   --vivid-pink: oklch(69.02% 0.277 332.77);
@@ -165,6 +165,10 @@ main {
   .content {
     flex-direction: column;
     width: max-content;
+  }
+
+  .content h1 {
+    display: none;
   }
 
   .divider {

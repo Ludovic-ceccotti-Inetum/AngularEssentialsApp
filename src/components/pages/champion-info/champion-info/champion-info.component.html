@@ -1,26 +1,23 @@
 <div class="champion-info-container">
   @if (champion) {
-    <h3 class="champion-info-name">{{champion.name}}</h3>
-    <p>{{champion.title}}</p>
-    <img [ngSrc]="championPic" width="800" height="600">
+    <h3 class="champion-info-name">{{champion.name}} ({{champion.title}})</h3>
+    <app-champion-skins [skins]="champion.skins"></app-champion-skins>
 
     <h4>{{champion.name}}'s story</h4>
-    <p>{{champion.blurb}}</p>
+    <p><i class="fa-solid fa-scroll"></i> {{champion.lore}}</p>
 
     <h4>Stats</h4>
-    <h4>Tags:</h4>
-    @for (tag of champion.tags; track tag) {
-      <p>{{tag}}</p>
-    }
+
+    <app-tags-with-icon  [tags]="champion.tags"></app-tags-with-icon>
 
     <h4>If {{champion.name}} is your ally: </h4>
     @for (tip of champion.allytips; track tip) {
-      <p>{{tip}}</p>
+      <app-text-info [info]="tip"></app-text-info>
     }
 
     <h4>If {{champion.name}} is your opponent: </h4>
     @for (tip of champion.enemytips; track tip) {
-      <p>{{tip}}</p>
+      <app-text-info [info]="tip"></app-text-info>
     }
   }
 </div>

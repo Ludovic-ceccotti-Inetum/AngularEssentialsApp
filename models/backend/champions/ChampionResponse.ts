@@ -9,6 +9,7 @@ export interface ChampionResponse {
   name: string;
   title: string;
   blurb: string;
+  lore: string;
   info: ChampionInfo;
   stats: ChampionStats;
   skins: ChampionSkin [];

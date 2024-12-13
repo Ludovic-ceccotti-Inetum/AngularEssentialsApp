@@ -1,0 +1,26 @@
+<h4>Tags:</h4>
+@for (tag of tags; track tag) {
+  @switch (tag) {
+    @case ('Mage') {
+      <p><i class="fa-solid fa-hat-wizard"></i> {{tag}}</p>
+    }
+    @case ('Fighter') {
+      <p><i class="fa-solid fa-hand-fist"></i> {{tag}}</p>
+    }
+    @case ('Assassin') {
+      <p><i class="fa-solid fa-skull-crossbones"></i> {{tag}}</p>
+    }
+    @case ('Marksman') {
+      <p><i class="fa-solid fa-chess-knight"></i> {{tag}}</p>
+    }
+    @case ('Tank') {
+      <p><i class="fa-solid fa-shield-halved"></i> {{tag}}</p>
+    }
+    @case ('Support') {
+      <p><i class="fa-solid fa-heart"></i> {{tag}}</p>
+    }
+    @default {
+      <p>{{tag}}</p>
+    }
+  }
+}

@@ -10,12 +10,12 @@ import {Router} from '@angular/router';
   templateUrl: './champions-page.component.html',
   styleUrl: './champions-page.component.css'
 })
-export class ChampionsPageComponent implements OnInit{
+export class ChampionsPageComponent implements OnInit {
 
   private championFetchingService: ChampionFetchingService;
   private cdr: ChangeDetectorRef | null = null;
   champions: ChampionResponse[] = [];
-  #router= inject(Router);
+  #router = inject(Router);
 
 
   constructor(championFetchingService: ChampionFetchingService, cdr: ChangeDetectorRef) {
@@ -25,21 +25,16 @@ export class ChampionsPageComponent implements OnInit{
 
   ngOnInit() {
     this.championFetchingService.getAllChampions().subscribe({
-      next:(res) => {
+      next: (res) => {
         if (res !== null) {
           this.champions = Object.values(res?.data);
         }
       },
-      error:(e) => console.log(e)
+      error: (e) => console.log(e)
     });
   }
 
   goToChampion(name: string): void {
-    if(name.includes("'")) {
-     const  fragments = name.split("'");
-     name = fragments[0] + fragments[1].toLowerCase();
-    }
-    this.#router.navigate(['champions',name]);
+    this.#router.navigate(['champions', name]);
   }
-
 }

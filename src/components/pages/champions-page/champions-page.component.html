@@ -1,5 +1,5 @@
 <div class="champions-container">
       @for (champ of champions; track champ.id) {
-        <p (click)=goToChampion(champ.name)>{{champ.name}}</p>
+        <p (click)=goToChampion(champ.id)>{{champ.name}}</p>
       }
 </div>

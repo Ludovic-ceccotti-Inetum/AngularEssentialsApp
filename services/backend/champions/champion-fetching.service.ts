@@ -21,7 +21,7 @@ export class ChampionFetchingService {
       .get<ChampionListResponse | null>(this.backendProperties.getAllChampionsUrl());
   }
 
-  getChampionByNames(name: string): Observable<ChampionResponse | null> {
+  getChampionByName(name: string): Observable<ChampionResponse | null> {
     return this.httpClient
       .get<ChampionResponse | null>(this.backendProperties.getChampionByNameUrl(name));
   }
