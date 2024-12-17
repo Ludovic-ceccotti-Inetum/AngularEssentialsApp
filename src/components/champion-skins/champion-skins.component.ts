@@ -64,6 +64,7 @@ export class ChampionSkinsComponent {
   }
 
   handleSwipe(isrightswipe: boolean): void {
+    console.log(isrightswipe)
     if (isrightswipe) {
       this.goToNextSkin();
     } else {

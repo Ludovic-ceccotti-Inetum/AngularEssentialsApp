@@ -1,19 +1,17 @@
 import {Component, inject, Input} from '@angular/core';
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';;
 import {AuthService} from '../../../../services/auth/auth.service';
 import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import { Router} from '@angular/router';
+import { TextInputComponent } from '../../text-input/text-input.component';
+import { StandardButtonComponent } from '../../standard-button/standard-button.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [
-    MatInputModule,
-    MatButtonModule,
-    MatFormFieldModule,
+    StandardButtonComponent,
+    TextInputComponent,
     ReactiveFormsModule
   ],
   templateUrl: './login-page.component.html',
@@ -30,7 +28,7 @@ export class LoginPageComponent {
   wrongLogin: boolean = false;
 
   userName: FormControl<string | null> = new FormControl('',[
-    Validators.required, Validators.minLength(4), Validators.maxLength(20)
+    Validators.required, Validators.minLength(4), Validators.maxLength(50)
   ]);
   password: FormControl<string | null> = new FormControl('',[
     Validators.required, Validators.minLength(4), Validators.maxLength(12)
@@ -38,15 +36,15 @@ export class LoginPageComponent {
 
   areNotNull: boolean = this.userName.value !== null && this.password.value !== null;
 
-  onUsernameUpdate(value: Event) {
-    const inputvalue = value.target as HTMLInputElement;
-    this.userName.setValue(inputvalue.value.trim());
+  onUsernameUpdate(value: string) {
+    this.userName.setValue(value.trim());
   }
 
-  onPasswordUpdate(value: Event) {
-    const inputvalue = value.target as HTMLInputElement;
-    this.password.setValue(inputvalue.value.trim());
+  onPasswordUpdate(value: string) {
+    this.password.setValue(value.trim());
   }
+
+  log = () => console.log('Hello');
 
  async login(): Promise<void> {
    //debugger
