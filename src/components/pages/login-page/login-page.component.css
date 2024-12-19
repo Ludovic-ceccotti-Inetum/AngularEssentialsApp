@@ -19,3 +19,9 @@
   margin-left: 10px;
   font-size: 12px;
 }
+
+#signup-link:hover {
+  cursor: pointer;
+  color: oklch(53.18% 0.28 296.97);
+  text-decoration: underline;
+}

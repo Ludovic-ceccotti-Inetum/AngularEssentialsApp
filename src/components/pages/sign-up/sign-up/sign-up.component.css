@@ -1,0 +1,23 @@
+.signup-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup-container h2 {
+  color: #E91E63;
+}
+
+.signup-form-form {
+
+}
+
+.signup-form span {
+  color: #E91E63;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.signup-form label{
+  margin-top: 20px;
+}

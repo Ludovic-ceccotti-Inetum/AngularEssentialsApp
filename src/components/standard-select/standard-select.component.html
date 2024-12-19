@@ -1,0 +1,5 @@
+<select name="selectName" id="selectId" (change)="onValueChange($event)">
+  @for (option of availableOptions; track option.value) {
+    <option [value]="option.value">{{option.displayName}}</option>
+  }
+</select>

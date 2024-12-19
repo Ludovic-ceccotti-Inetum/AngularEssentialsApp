@@ -8,6 +8,8 @@ export class BackendProperties {
 
   private _LOGIN_ENDPOINT: string = '/login';
 
+  private _SIGNUP_ENDPOINT:string = '/user/create';
+
   private _AVAILABLE_LANGUAGES_ENDPOINT: string = '/languages/available';
 
   private _RIOT_HEADER: string = 'X-Riot-Token'
@@ -65,6 +67,10 @@ export class BackendProperties {
 
   getChampionByNameUrl(name: string) : string {
   return (`${this._BASE_URL.concat(this._CHAMPIONS_ENDPOINT)}/${name}`);
+}
+
+getSignupUrl() {
+    return `${ this.BASE_URL.concat(this._SIGNUP_ENDPOINT) }`
 }
 
 }

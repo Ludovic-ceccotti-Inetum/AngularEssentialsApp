@@ -44,7 +44,9 @@ export class LoginPageComponent {
     this.password.setValue(value.trim());
   }
 
-  log = () => console.log('Hello');
+  gotToSignup():void {
+    this.#router.navigate(['signup']);
+  }
 
  async login(): Promise<void> {
    //debugger

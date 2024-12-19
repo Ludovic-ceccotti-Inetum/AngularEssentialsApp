@@ -1,0 +1,26 @@
+<div class="signup-container">
+  <h2>{{pageTitle}}</h2>
+  <form (submit)="$event.preventDefault()" class="signup-form">
+
+    @if (!userName.untouched && userName.errors && userName.errors['required']) { <p><span>{{userNameLabel}}  is required</span></p> }
+    @if (!userName.untouched && userName.errors && userName.hasError('minlength')) { <p><span>{{userNameLabel}}  must be at least {{userName.getError('minlength').requiredLength}} characters long</span></p> }
+    @if (!userName.untouched && userName.errors && userName.hasError('maxlength')) { <p><span>{{userNameLabel}}  must be at most {{userName.getError('maxlength').requiredLength}} characters long</span></p> }
+    <p><app-text-input inputId="signup-username" [inputControl]="userName" [placeHolder]="userNameLabel" [isPassword]="false" (inputChanged)="onUsernameUpdate($event)"/></p>
+
+
+    @if (!password.untouched && password.errors && password.errors['required']) { <p><span>{{passwordlabel}}  is required</span></p> }
+    @if (!password.untouched && password.errors && password.hasError('minlength')) { <p><span>{{passwordlabel}}  must be at least {{password.getError('minlength').requiredLength}} characters long</span></p> }
+    @if (!password.untouched && password.errors && password.hasError('maxlength')) { <p><span>{{passwordlabel}}  must be at most {{password.getError('maxlength').requiredLength}} characters long</span></p> }
+    <p><app-text-input inputId="signup-password" [placeHolder]="passwordlabel" [inputControl]="password"   [isPassword]="true" (inputChanged)="onPasswordUpdate($event)"/></p>
+
+    @if (!email.untouched && email.errors && email.errors['required']) { <p><span>{{emailLabel}}  is required</span></p> }
+    @if (!email.untouched && email.errors && email.errors['email']) { <p><span>{{emailLabel}}  must be a valid email</span></p> }
+    @if (!email.untouched && email.errors && email.hasError('minlength')) { <p><span>{{emailLabel}}  must be at least {{email.getError('minlength').requiredLength}} characters long</span></p> }
+    @if (!email.untouched && email.errors && email.hasError('maxlength')) { <p><span>{{emailLabel}}  must be at most {{email.getError('maxlength').requiredLength}} characters long</span></p> }
+    <p><app-text-input inputId="signupEmail" [placeHolder]="emailLabel" [isPassword]="false" [inputControl]="email"  (inputChanged)="onEmailChange($event)"></app-text-input></p>
+
+    <p><app-standard-select [selectName]="'region'" [selectId]="'signup-region'" [availableOptions]="regionOptions" (optionChanged)="onRegionUpdate($event)"></app-standard-select></p>
+
+    <p><app-standard-button [buttonId]="'signup-button'"  [buttonText]="'Sign up'" (clicked)="signup()" [isDisabled]="!userName.valid || !password.valid || !email.valid"></app-standard-button></p>
+  </form>
+</div>

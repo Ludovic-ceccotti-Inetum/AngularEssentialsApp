@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BackendProperties} from '../../../models/BackendProperties';
+import {BackendProperties} from '../BackendProperties';
 import {HttpClient} from '@angular/common/http';
 import {LanguageResponse} from '../../../models/backend/languages/LanguageResponse';
 import {Observable} from 'rxjs';

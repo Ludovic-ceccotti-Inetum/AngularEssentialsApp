@@ -14,6 +14,7 @@ export class StandardButtonComponent {
   @Output() clicked: EventEmitter<void> = new EventEmitter<void>;
 
   clickedChange():void {
+    console.log('emit meeee')
     this.clicked.emit()
   };
 }

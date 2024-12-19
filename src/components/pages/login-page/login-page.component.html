@@ -2,21 +2,19 @@
   <h2>{{pageTitle}}</h2>
   <div class="login-form">
     <form (submit)="$event.preventDefault()">
-      <!--<p><label for="login-username">{{userNameLabel}}</label></p>-->
       @if (!userName.untouched && userName.errors && userName.errors['required']) { <p><span>{{userNameLabel}}  is required</span></p> }
       @if (!userName.untouched && userName.errors && userName.hasError('minlength')) { <p><span>{{userNameLabel}}  must be at least {{userName.getError('minlength').requiredLength}} characters long</span></p> }
       @if (!userName.untouched && userName.errors && userName.hasError('maxlength')) { <p><span>{{userNameLabel}}  must be at most {{userName.getError('maxlength').requiredLength}} characters long</span></p> }
         <p>
           <app-text-input [inputId]="'login-username'"  [inputControl]="userName"  [isPassword]="false" [placeHolder]="userNameLabel" (inputChanged)="onUsernameUpdate($event)" ></app-text-input>
         </p>
-      <!--<p><label for="login-password">{{passwordlabel}}</label></p>-->
       @if (!password.untouched && password.errors && password.errors['required']) { <p><span>{{passwordlabel}}  is required</span></p> }
       @if (!password.untouched && password.errors && password.hasError('minlength')) { <p><span>{{passwordlabel}}  must be at least {{password.getError('minlength').requiredLength}} characters long</span></p> }
       @if (!password.untouched && password.errors && password.hasError('maxlength')) { <p><span>{{passwordlabel}}  must be at most {{password.getError('maxlength').requiredLength}} characters long</span></p> }
         <p>
           <app-text-input [inputId]="'login-password'"  [inputControl]="password"  [isPassword]="true" [placeHolder]="passwordlabel" (inputChanged)="onPasswordUpdate($event)"></app-text-input>
         </p>
-      <p><app-standard-button [buttonId]="'login-button'" (clicked)="login()" buttonText="Login" [isDisabled]="!userName.valid || !password.valid" ></app-standard-button></p>
+      <p><app-standard-button [buttonId]="'login-button'" (clicked)="login()" buttonText="Login" [isDisabled]="!userName.valid || !password.valid"></app-standard-button> <span id="signup-link" (click)="gotToSignup()">Create account </span></p>
       @if (wrongLogin) {
         <p><span>Wrong username or password</span></p>
       }
