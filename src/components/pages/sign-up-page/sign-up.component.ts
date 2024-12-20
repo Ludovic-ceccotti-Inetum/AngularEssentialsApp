@@ -1,15 +1,16 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { StandardButtonComponent } from '../../../standard-button/standard-button.component';
-import { TextInputComponent } from '../../../text-input/text-input.component';
-import { StandardSelectComponent } from '../../../standard-select/standard-select.component';
+import { StandardButtonComponent } from '../../standard-button/standard-button.component';
+import { TextInputComponent } from '../../text-input/text-input.component';
+import { StandardSelectComponent } from '../../standard-select/standard-select.component';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import {AvalaibleOption} from '../../../../../models/AvalaibleOption';
-import {SignupService} from '../../../../../services/backend/signup/signup.service';
-import {SignupRequest} from '../../../../../models/backend/signup/SignupRequest';
-import {SignupResponse} from '../../../../../models/backend/signup/SignupResponse';
-import {AuthService} from '../../../../../services/auth/auth.service';
-import {LoginRequest} from '../../../../../models/backend/login/LoginRequest';
+import {AvalaibleOption} from '../../../../models/AvalaibleOption';
+import {SignupService} from '../../../../services/backend/signup/signup.service';
+import {SignupRequest} from '../../../../models/backend/signup/SignupRequest';
+import {SignupResponse} from '../../../../models/backend/signup/SignupResponse';
+import {AuthService} from '../../../../services/auth/auth.service';
+import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
+import {ErrorMessageDto} from '../../../../models/backend/errors/ErrorMessageDto';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,6 +28,7 @@ export class SignUpComponent{
   passwordlabel: string = 'Password';
   emailLabel:string='Email';
   wrongLogin: boolean = false;
+  errorMessage:ErrorMessageDto | null = null;
 
   regionOptions: AvalaibleOption[] = [
     {displayName: 'West Europe', value: 'EUW'},
@@ -89,7 +91,7 @@ export class SignUpComponent{
 
   onSignupError = (err:any) => {
     console.error(err);
-    this.wrongLogin = true;
+    this.errorMessage = err.error;
   };
 
   async signup(): Promise<void> {

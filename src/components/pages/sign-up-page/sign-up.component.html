@@ -1,7 +1,9 @@
 <div class="signup-container">
   <h2>{{pageTitle}}</h2>
   <form (submit)="$event.preventDefault()" class="signup-form">
-
+    @if (errorMessage) {
+      <p><span><i class="fa-solid fa-triangle-exclamation" style="color: #f11653;"></i>{{errorMessage.message}}</span></p>
+    }
     @if (!userName.untouched && userName.errors && userName.errors['required']) { <p><span>{{userNameLabel}}  is required</span></p> }
     @if (!userName.untouched && userName.errors && userName.hasError('minlength')) { <p><span>{{userNameLabel}}  must be at least {{userName.getError('minlength').requiredLength}} characters long</span></p> }
     @if (!userName.untouched && userName.errors && userName.hasError('maxlength')) { <p><span>{{userNameLabel}}  must be at most {{userName.getError('maxlength').requiredLength}} characters long</span></p> }
