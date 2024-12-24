@@ -27,6 +27,7 @@ export class ChampionsPageComponent implements OnInit {
     this.championFetchingService.getAllChampions().subscribe({
       next: (res) => {
         if (res !== null) {
+          console.log(res);
           this.champions = Object.values(res?.data);
         }
       },

@@ -1,5 +1,9 @@
 <div>
     @for (champ of champions; track champ.name) {
-        <p>{{champ.name}}</p>
+      @if (champ.possessed) {
+        <p>{{ champ.name }} <i class="fa-solid fa-check" style="color: #f637e3;"></i></p>
+      } @else {
+        <p>{{ champ.name }} </p>
+      }
     }
 </div>

@@ -17,4 +17,5 @@ export interface ChampionResponse {
   allytips: string [];
   enemytips: string [];
   partype: string;
+  possessed:boolean;
 }
