@@ -20,6 +20,10 @@ export class AuthService {
   return this.loginService.login(payload);
 }
 
+logout(): Observable<number | null> {
+return this.loginService.logout();
+}
+
 getTokenFromStorage(): LoginResponse | null {
     let token: LoginResponse | null = null;
   console.log('Looking credentials for token from SessionStorage first');

@@ -5,18 +5,19 @@ import {Position} from '../../models/Position';
 import {ChampionType, findChampionTypeByDescription} from '../../models/ChampionType';
 import {FetchingServiceService} from '../fetching-service.service';
 import {LanguageService} from '../languages/language.service';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServiceService {
 
-  private appFetchingService: FetchingServiceService;
   private languageService: LanguageService;
+  private authService: AuthService;
 
-  constructor(appFecthingService: FetchingServiceService, languageService:LanguageService) {
-    this.appFetchingService = appFecthingService;
+  constructor(languageService:LanguageService, authService: AuthService) {
     this.languageService = languageService;
+    this.authService = authService;
     if (!sessionStorage.getItem('languageOptions')) {
       this.languageService.storeLanguage();
     }
@@ -37,6 +38,10 @@ export class AppServiceService {
     new Champion('Ashe',ChampionType.ADC, [Position.BOTTOM]),
     new Champion('Riven', ChampionType.BRUISER, [Position.TOP,Position.JUNGLE])
   ];
+
+  logout(): void {
+    this.authService.logout();
+  }
 
   findChampions(champions: Champion[],searchOptions : Champion) : Champion[] {
     if(!searchOptions) return champions;

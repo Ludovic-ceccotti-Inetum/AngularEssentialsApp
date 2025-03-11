@@ -1,11 +1,12 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {LinkItemComponent} from '../components/link-item/link-item.component';
 import {AppServiceService} from '../../services/app/app-service.service';
 import {Champion} from '../../models/Champion';
 import {LoginPageComponent} from '../components/pages/login-page/login-page.component';
 import {ChampionsPageComponent} from '../components/pages/champions-page/champions-page.component';
 import {MyProfilePageComponent} from '../components/pages/my-profile-page/my-profile-page.component';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +16,38 @@ import {MyProfilePageComponent} from '../components/pages/my-profile-page/my-pro
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  private appService = inject(AppServiceService)
+  private appService: AppServiceService = inject(AppServiceService)
+  private authService: AuthService = inject(AuthService);
+  #router: Router = inject(Router);
   title: String = 'my-little-angular-app';
   isBeginner: boolean = false;
   searchOptions: any = {};
 
-  toggleBeginner() {
+  toggleBeginner(): void {
   this.isBeginner =  this.appService.toggleBeginner(this.isBeginner)
   }
 
-  setSearchChampion(payload: Champion):void {
-    this.searchOptions = payload;
+  async logout(): Promise<void> {
+    if(sessionStorage.getItem('token') || localStorage.getItem('token')) {
+      this.authService.logout().subscribe(
+        {
+          next: this.handleLogout,
+          error: this.handleLogoutError
+        }
+      );
+    }
   }
 
+   handleLogout = (res: any): void => {
+      console.log('logout succesful: removing token from session storage');
+      sessionStorage.removeItem('token');
+      localStorage.removeItem('token');
+      this.#router.navigate(['login']);
+  }
+
+  handleLogoutError = (e: any):void => console.error(`Problem while logging out: ${e}`);
+
+  isNavigationEnabled(): boolean {
+    return this.#router.url.endsWith('login') || this.#router.url.endsWith('signup');
+}
 }

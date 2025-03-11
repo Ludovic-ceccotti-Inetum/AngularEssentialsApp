@@ -8,6 +8,8 @@ export class BackendProperties {
 
   private _LOGIN_ENDPOINT: string = '/login';
 
+  private _LOGOUT_ENDPOINT: string = '/logout';
+
   private _SIGNUP_ENDPOINT:string = '/user/create';
 
   private _AVAILABLE_LANGUAGES_ENDPOINT: string = '/languages/available';
@@ -63,6 +65,10 @@ export class BackendProperties {
 
   getLoginUrl(): string {
     return `${this.BASE_URL.concat(this.LOGIN_ENDPOINT)}`
+  }
+
+  getLogoutUrl(): string {
+    return `${this.BASE_URL.concat(this._LOGOUT_ENDPOINT)}`
   }
 
   getChampionByNameUrl(name: string) : string {

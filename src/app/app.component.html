@@ -60,7 +60,8 @@
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
-      <nav class="pill-group-row">
+      @if (!isNavigationEnabled()) {
+        <nav class="pill-group-row">
           @for (link of [
             {title: 'See champions', link: '/champions'},
             {title: 'See objects', link: '/objects'},
@@ -68,7 +69,9 @@
           ]; track link.title) {
             <app-link-item [title]="link.title" [link]="link.link" [isRouterLink]="true"></app-link-item>
           }
-      </nav>
+          <i class="fa-solid fa-right-from-bracket" style="color: #e91e63;" (click)="logout()"></i>
+        </nav>
+      }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>

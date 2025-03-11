@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :host {
+  --angular-logo-width: 9.2rem;
   --bright-blue: oklch(0.51 0.274 263.834);
   --electric-violet: oklch(53.18% 0.28 296.97);
   --french-violet: oklch(47.66% 0.246 305.88);
@@ -64,7 +65,8 @@ main {
 }
 
 .angular-logo {
-  max-width: 9.2rem;
+  max-width: var(--angular-logo-width);
+  min-width: var(--angular-logo-width);
 }
 
 .content {

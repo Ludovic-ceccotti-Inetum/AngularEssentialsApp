@@ -24,4 +24,10 @@ export class LoginService {
   return  this.httpClient
       .post<LoginResponse>(this.backendProperties.getLoginUrl(), null, {headers: basicAuthHeaders})
   }
+
+  logout(): Observable<number | null> {
+    const basicAuthHeaders = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.httpClient.post<number>(this.backendProperties.getLogoutUrl(),null,{headers: basicAuthHeaders});
+  }
+
 }
