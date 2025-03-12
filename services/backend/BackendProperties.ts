@@ -10,6 +10,8 @@ export class BackendProperties {
 
   private _LOGOUT_ENDPOINT: string = '/logout';
 
+  private _ASK_RESET_PASSWORD_ENDPOINT = '/reset/token';
+
   private _SIGNUP_ENDPOINT:string = '/user/create';
 
   private _AVAILABLE_LANGUAGES_ENDPOINT: string = '/languages/available';
@@ -77,6 +79,10 @@ export class BackendProperties {
 
 getSignupUrl() {
     return `${ this.BASE_URL.concat(this._SIGNUP_ENDPOINT) }`
+}
+
+getAskResetPasswordUrl(): string {
+    return `${this.BASE_URL.concat(this._ASK_RESET_PASSWORD_ENDPOINT)}`
 }
 
 }

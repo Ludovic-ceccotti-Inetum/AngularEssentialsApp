@@ -24,6 +24,10 @@ logout(): Observable<number | null> {
 return this.loginService.logout();
 }
 
+askResetPassword(username:string): Observable<number | null> {
+    return this.loginService.askResetPassword(username);
+}
+
 getTokenFromStorage(): LoginResponse | null {
     let token: LoginResponse | null = null;
   console.log('Looking credentials for token from SessionStorage first');

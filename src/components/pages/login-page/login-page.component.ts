@@ -36,7 +36,7 @@ export class LoginPageComponent {
 
   areNotNull: boolean = this.userName.value !== null && this.password.value !== null;
 
-  onUsernameUpdate(value: string) {
+  onUserNameUpdate(value: string) {
     this.userName.setValue(value.trim());
   }
 
@@ -46,6 +46,10 @@ export class LoginPageComponent {
 
   gotToSignup():void {
     this.#router.navigate(['signup']);
+  }
+
+  goToResetPassword(): void {
+    this.#router.navigate(['reset/ask']);
   }
 
  async login(): Promise<void> {

@@ -6,9 +6,11 @@ import {NotFoundPageComponent} from '../components/pages/not-found-page/not-foun
 import {ObjectPageComponent} from '../components/pages/object-page/object-page.component';
 import {ChampionInfoComponent} from '../components/pages/champion-info/champion-info/champion-info.component';
 import {SignUpComponent} from '../components/pages/sign-up-page/sign-up.component';
+import {AskResetComponent} from '../components/pages/reset-password/ask-reset/ask-reset/ask-reset.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
+  { path: 'reset/ask', component: AskResetComponent },
   {path: 'signup', component: SignUpComponent},
   { path: 'champions', component: ChampionsPageComponent },
   {path: 'champions/:name', component: ChampionInfoComponent},
