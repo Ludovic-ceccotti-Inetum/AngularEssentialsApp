@@ -1,0 +1,19 @@
+<div class="do-reset-container">
+  <h2>{{pageTitle}}</h2>
+  <div class="login-form">
+    <form (submit)="$event.preventDefault()">
+      @if (!newPassword.untouched && newPassword.errors && newPassword.errors['required']) { <p><span>{{newPasswordLabel}}  is required</span></p> }
+      @if (!newPassword.untouched && newPassword.errors && newPassword.hasError('minlength')) { <p><span>{{newPasswordLabel}}  must be at least {{newPassword.getError('minlength').requiredLength}} characters long</span></p> }
+      @if (!newPassword.untouched && newPassword.errors && newPassword.hasError('maxlength')) { <p><span>{{newPasswordLabel}}  must be at most {{newPassword.getError('maxlength').requiredLength}} characters long</span></p> }
+      <p>
+        <app-text-input [inputId]="'newPassord'"  [inputControl]="newPassword"  [isPassword]="true" [placeHolder]="newPasswordLabel" (inputChanged)="onNewPasswordChange($event)" ></app-text-input>
+      @if (newPassword.value?.trim() !== confirmNewPassword.value?.trim()) { <p><span>Passwords don't match</span></p> }
+      <p>
+        <app-text-input [inputId]="'confirmNewPassord'"  [inputControl]="confirmNewPassword"  [isPassword]="true" [placeHolder]="confirmNewPasswordLabel" (inputChanged)="onNewPasswordConfirmationChange($event)" ></app-text-input>
+      <p><app-standard-button [buttonId]="'login-button'" (clicked)="sendNewPassword()" buttonText="Update password" [isDisabled]="!newPassword.valid || !confirmNewPassword.valid || newPassword.value !== confirmNewPassword.value"></app-standard-button></p>
+      <!-- @if (wrongLogin) {
+         <p><span>Wrong username or password</span></p>
+       }-->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="ask-reset-container">
+  <h2>{{pageTitle}}</h2>
+  <div class="login-form">
+    <form (submit)="$event.preventDefault()">
+      @if (!userName.untouched && userName.errors && userName.errors['required']) { <p><span>{{userNameLabel}}  is required</span></p> }
+      @if (!userName.untouched && userName.errors && userName.hasError('minlength')) { <p><span>{{userNameLabel}}  must be at least {{userName.getError('minlength').requiredLength}} characters long</span></p> }
+      @if (!userName.untouched && userName.errors && userName.hasError('maxlength')) { <p><span>{{userNameLabel}}  must be at most {{userName.getError('maxlength').requiredLength}} characters long</span></p> }
+      <p>
+        <app-text-input [inputId]="'login-username'"  [inputControl]="userName"  [isPassword]="false" [placeHolder]="userNameLabel" (inputChanged)="onUserNameUpdate($event)" ></app-text-input>
+      <p><app-standard-button [buttonId]="'login-button'" (clicked)="sendResetRequest()" buttonText="Reset password" [isDisabled]="!userName.valid"></app-standard-button></p>
+     <!-- @if (wrongLogin) {
+        <p><span>Wrong username or password</span></p>
+      }-->
+    </form>
+  </div>
+</div>

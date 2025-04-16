@@ -1,0 +1,21 @@
+.do-reset-container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+}
+
+.do-reset-container h2 {
+  color: #E91E63;
+}
+
+.do-reset-container span {
+  color: #E91E63;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+#reset-password-link:hover {
+  cursor: pointer;
+  color: oklch(53.18% 0.28 296.97);
+  text-decoration: underline;
+}

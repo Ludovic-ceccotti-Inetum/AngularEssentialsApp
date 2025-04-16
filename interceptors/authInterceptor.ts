@@ -4,9 +4,13 @@ import {AuthService} from '../services/auth/auth.service';
 import {Observable, throwError} from 'rxjs';
 import {LoginResponse} from '../models/backend/login/LoginResponse';
 
+const urlsToTest: string[] = ['/login', '/user/create', '/reset/token'];
+const ignorePostRequests = (req: HttpRequest<unknown>): boolean => { return req.method === 'POST' && urlsToTest.some(url => req.url.endsWith(url))}
+const ignorePatchRequets = (req: HttpRequest<unknown>): boolean => { return req.method === 'PATCH' && req.url.endsWith(urlsToTest[2])}
+
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   // Don't add token if we login for the first time
-  if(req.method === 'POST' && (req.url.endsWith('/login') || req.url.endsWith('/user/create') || (req.url.endsWith('/reset/token'))) && !sessionStorage.getItem('token')) {
+  if((ignorePostRequests(req) || ignorePatchRequets(req)) && !sessionStorage.getItem('token')) {
     return next(req);
   } else {
     console.log(`Adding authorization credentials before request to: ${req.method} ${req.url}`);
