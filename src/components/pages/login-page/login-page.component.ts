@@ -7,15 +7,14 @@ import { TextInputComponent } from '../../text-input/text-input.component';
 import { StandardButtonComponent } from '../../standard-button/standard-button.component';
 
 @Component({
-  selector: 'app-login-page',
-  standalone: true,
-  imports: [
-    StandardButtonComponent,
-    TextInputComponent,
-    ReactiveFormsModule
-  ],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+    selector: 'app-login-page',
+    imports: [
+        StandardButtonComponent,
+        TextInputComponent,
+        ReactiveFormsModule
+    ],
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
 

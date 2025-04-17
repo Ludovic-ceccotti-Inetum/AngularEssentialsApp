@@ -4,11 +4,10 @@ import {ChampionResponse} from '../../../../models/backend/champions/ChampionRes
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-champions-page',
-  standalone: true,
-  imports: [],
-  templateUrl: './champions-page.component.html',
-  styleUrl: './champions-page.component.css'
+    selector: 'app-champions-page',
+    imports: [],
+    templateUrl: './champions-page.component.html',
+    styleUrl: './champions-page.component.css'
 })
 export class ChampionsPageComponent implements OnInit {
 

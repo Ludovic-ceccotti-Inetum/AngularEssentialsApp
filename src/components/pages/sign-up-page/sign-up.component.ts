@@ -13,11 +13,10 @@ import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import {ErrorMessageDto} from '../../../../models/backend/errors/ErrorMessageDto';
 
 @Component({
-  selector: 'app-sign-up',
-  standalone: true,
-  imports: [StandardSelectComponent,StandardButtonComponent,TextInputComponent],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+    selector: 'app-sign-up',
+    imports: [StandardSelectComponent, StandardButtonComponent, TextInputComponent],
+    templateUrl: './sign-up.component.html',
+    styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent{
 

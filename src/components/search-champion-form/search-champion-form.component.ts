@@ -9,11 +9,10 @@ class List<T> {
 }
 
 @Component({
-  selector: 'app-search-champion-form',
-  standalone: true,
-  imports: [],
-  templateUrl: './search-champion-form.component.html',
-  styleUrl: './search-champion-form.component.css'
+    selector: 'app-search-champion-form',
+    imports: [],
+    templateUrl: './search-champion-form.component.html',
+    styleUrl: './search-champion-form.component.css'
 })
 export class SearchChampionFormComponent {
   name: FormControl<string | null> = new FormControl<string>('');

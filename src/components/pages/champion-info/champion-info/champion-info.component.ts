@@ -8,13 +8,12 @@ import {TagsWithIconComponent} from '../../../tags-with-icon/tags-with-icon.comp
 import { ChampionSkinsComponent } from '../../../champion-skins/champion-skins.component';
 
 @Component({
-  selector: 'app-champion-info',
-  standalone: true,
-  imports: [
-    NgOptimizedImage, TextInfoComponent, TagsWithIconComponent, ChampionSkinsComponent
-  ],
-  templateUrl: './champion-info.component.html',
-  styleUrl: './champion-info.component.css'
+    selector: 'app-champion-info',
+    imports: [
+        NgOptimizedImage, TextInfoComponent, TagsWithIconComponent, ChampionSkinsComponent
+    ],
+    templateUrl: './champion-info.component.html',
+    styleUrl: './champion-info.component.css'
 })
 export class ChampionInfoComponent implements OnInit {
 

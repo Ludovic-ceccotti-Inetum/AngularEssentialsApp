@@ -5,15 +5,14 @@ import {TextInputComponent} from '../../../text-input/text-input.component';
 import {LoginService} from '../../../../../services/backend/login/login.service';
 
 @Component({
-  selector: 'app-ask-reset',
-  standalone: true,
-  imports: [
-    FormsModule,
-    StandardButtonComponent,
-    TextInputComponent
-  ],
-  templateUrl: './ask-reset.component.html',
-  styleUrl: './ask-reset.component.css'
+    selector: 'app-ask-reset',
+    imports: [
+        FormsModule,
+        StandardButtonComponent,
+        TextInputComponent
+    ],
+    templateUrl: './ask-reset.component.html',
+    styleUrl: './ask-reset.component.css'
 })
 export class AskResetComponent {
   private loginService: LoginService;

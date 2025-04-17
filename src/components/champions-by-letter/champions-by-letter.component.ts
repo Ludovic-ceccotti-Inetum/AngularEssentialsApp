@@ -4,7 +4,6 @@ import {ChampionService} from '../../../services/champions/champion.service';
 
 @Component({
     selector: 'app-champions-by-letter',
-    standalone: true,
     imports: [],
     templateUrl: './champions-by-letter.component.html',
     styleUrl: './champions-by-letter.component.css'

@@ -4,13 +4,12 @@ import {ChampionSkin} from '../../../models/backend/champions/ChampionSkin';
 import { SwippeUtilsService } from '../../../services/app/swippe-utils.service';
 
 @Component({
-  selector: 'app-champion-skins',
-  standalone: true,
+    selector: 'app-champion-skins',
     imports: [
         NgOptimizedImage
     ],
-  templateUrl: './champion-skins.component.html',
-  styleUrl: './champion-skins.component.css'
+    templateUrl: './champion-skins.component.html',
+    styleUrl: './champion-skins.component.css'
 })
 export class ChampionSkinsComponent {
   @Input() skins: ChampionSkin[] = [];

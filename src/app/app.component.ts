@@ -9,11 +9,10 @@ import {MyProfilePageComponent} from '../components/pages/my-profile-page/my-pro
 import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet,LinkItemComponent, RouterLink, RouterLinkActive, MyProfilePageComponent, LoginPageComponent, ChampionsPageComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [RouterOutlet, LinkItemComponent, RouterLink, RouterLinkActive, MyProfilePageComponent, LoginPageComponent, ChampionsPageComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   private appService: AppServiceService = inject(AppServiceService)
