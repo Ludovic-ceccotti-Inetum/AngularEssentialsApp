@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, OnChanges, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
 import {ChampionFetchingService} from '../../../../services/backend/champions/champion-fetching.service';
 import {ChampionResponse} from '../../../../models/backend/champions/ChampionResponse';
 import {Router} from '@angular/router';

@@ -4,10 +4,6 @@ import {Position, findPositionByKey} from '../../../models/Position';
 import {AppServiceService} from '../../../services/app/app-service.service';
 import {Champion} from '../../../models/Champion';
 import {ChampionType, findChampionTypeByKey} from '../../../models/ChampionType';
-
-class List<T> {
-}
-
 @Component({
     selector: 'app-search-champion-form',
     imports: [],

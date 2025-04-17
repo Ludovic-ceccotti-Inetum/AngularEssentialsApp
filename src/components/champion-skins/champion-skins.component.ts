@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ChampionSkin} from '../../../models/backend/champions/ChampionSkin';
-import { SwippeUtilsService } from '../../../services/app/swippe-utils.service';
 
 @Component({
     selector: 'app-champion-skins',

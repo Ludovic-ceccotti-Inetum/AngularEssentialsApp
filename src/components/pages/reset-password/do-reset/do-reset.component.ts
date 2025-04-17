@@ -1,11 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {TextInputComponent} from '../../../text-input/text-input.component';
 import {StandardButtonComponent} from '../../../standard-button/standard-button.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChangePasswordRequest} from '../../../../../models/backend/login/ChangePasswordRequest';
 import {LoginService} from '../../../../../services/backend/login/login.service';
-import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Component({
     selector: 'app-do-reset',

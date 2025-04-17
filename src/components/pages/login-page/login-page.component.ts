@@ -1,5 +1,5 @@
-import {Component, inject, Input} from '@angular/core';
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';;
+import {Component, inject} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import { Router} from '@angular/router';
@@ -66,7 +66,7 @@ export class LoginPageComponent {
             sessionStorage.setItem('token',JSON.stringify(res));
             this.#router.navigate(['my-profile']);
           },
-          error: (e) => this.wrongLogin = true
+          error: () => this.wrongLogin = true
         });
 
     }
