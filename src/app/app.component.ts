@@ -2,18 +2,16 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {LinkItemComponent} from '../components/link-item/link-item.component';
 import {AppServiceService} from '../../services/app/app-service.service';
-import {Champion} from '../../models/Champion';
 import {LoginPageComponent} from '../components/pages/login-page/login-page.component';
 import {ChampionsPageComponent} from '../components/pages/champions-page/champions-page.component';
 import {MyProfilePageComponent} from '../components/pages/my-profile-page/my-profile-page.component';
 import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet,LinkItemComponent, RouterLink, RouterLinkActive, MyProfilePageComponent, LoginPageComponent, ChampionsPageComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [RouterOutlet, LinkItemComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   private appService: AppServiceService = inject(AppServiceService)

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {ChampionResponse} from '../../../../../models/backend/champions/ChampionResponse';
 import {ChampionFetchingService} from '../../../../../services/backend/champions/champion-fetching.service';
 import {NgOptimizedImage} from '@angular/common';
@@ -8,13 +8,12 @@ import {TagsWithIconComponent} from '../../../tags-with-icon/tags-with-icon.comp
 import { ChampionSkinsComponent } from '../../../champion-skins/champion-skins.component';
 
 @Component({
-  selector: 'app-champion-info',
-  standalone: true,
-  imports: [
-    NgOptimizedImage, TextInfoComponent, TagsWithIconComponent, ChampionSkinsComponent
-  ],
-  templateUrl: './champion-info.component.html',
-  styleUrl: './champion-info.component.css'
+    selector: 'app-champion-info',
+    imports: [
+        TextInfoComponent, TagsWithIconComponent, ChampionSkinsComponent
+    ],
+    templateUrl: './champion-info.component.html',
+    styleUrl: './champion-info.component.css'
 })
 export class ChampionInfoComponent implements OnInit {
 

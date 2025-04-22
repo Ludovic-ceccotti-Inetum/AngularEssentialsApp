@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { StandardButtonComponent } from '../../standard-button/standard-button.component';
 import { TextInputComponent } from '../../text-input/text-input.component';
 import { StandardSelectComponent } from '../../standard-select/standard-select.component';
@@ -13,11 +13,10 @@ import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import {ErrorMessageDto} from '../../../../models/backend/errors/ErrorMessageDto';
 
 @Component({
-  selector: 'app-sign-up',
-  standalone: true,
-  imports: [StandardSelectComponent,StandardButtonComponent,TextInputComponent],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+    selector: 'app-sign-up',
+    imports: [StandardSelectComponent, StandardButtonComponent, TextInputComponent],
+    templateUrl: './sign-up.component.html',
+    styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent{
 
@@ -85,7 +84,7 @@ export class SignUpComponent{
         sessionStorage.setItem('token',JSON.stringify(res));
         this.#router.navigate(['my-profile']);
       },
-      error: (e) => this.wrongLogin = true
+      error: () => this.wrongLogin = true
     });
   }
 

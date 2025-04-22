@@ -3,13 +3,12 @@ import {AvalaibleOption} from '../../../models/AvalaibleOption';
 import {FormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-standard-select',
-  standalone: true,
-  imports: [
-    FormsModule
-  ],
-  templateUrl: './standard-select.component.html',
-  styleUrl: './standard-select.component.css'
+    selector: 'app-standard-select',
+    imports: [
+        FormsModule
+    ],
+    templateUrl: './standard-select.component.html',
+    styleUrl: './standard-select.component.css'
 })
 export class StandardSelectComponent {
   @Input() selectId: string = '';

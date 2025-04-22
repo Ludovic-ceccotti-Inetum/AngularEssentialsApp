@@ -2,14 +2,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-text-input',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './text-input.component.html',
-  styleUrl: './text-input.component.css'
+    selector: 'app-text-input',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    templateUrl: './text-input.component.html',
+    styleUrl: './text-input.component.css'
 })
 export class TextInputComponent {
   @Input() inputId: string = '';

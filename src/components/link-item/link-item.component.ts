@@ -2,15 +2,14 @@ import {Component, Input} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
-  selector: 'app-link-item',
-  standalone: true,
-  imports: [
-    RouterLink,
-    RouterLinkActive
-  ],
-  templateUrl: './link-item.component.html',
-  styleUrl: './link-item.component.css',
-  inputs: ['title','classes','links','color']
+    selector: 'app-link-item',
+    imports: [
+        RouterLink,
+        RouterLinkActive
+    ],
+    templateUrl: './link-item.component.html',
+    styleUrl: './link-item.component.css',
+    inputs: ['title', 'classes', 'links', 'color']
 })
 export class LinkItemComponent {
   @Input() title: string;

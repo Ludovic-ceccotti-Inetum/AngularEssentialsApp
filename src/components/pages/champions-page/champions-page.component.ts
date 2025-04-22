@@ -1,14 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit, OnChanges, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
 import {ChampionFetchingService} from '../../../../services/backend/champions/champion-fetching.service';
 import {ChampionResponse} from '../../../../models/backend/champions/ChampionResponse';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-champions-page',
-  standalone: true,
-  imports: [],
-  templateUrl: './champions-page.component.html',
-  styleUrl: './champions-page.component.css'
+    selector: 'app-champions-page',
+    imports: [],
+    templateUrl: './champions-page.component.html',
+    styleUrl: './champions-page.component.css'
 })
 export class ChampionsPageComponent implements OnInit {
 
