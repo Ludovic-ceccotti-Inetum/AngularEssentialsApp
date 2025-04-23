@@ -1,25 +1,33 @@
 import {Component, Input} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ChampionSkin} from '../../../models/backend/champions/ChampionSkin';
+import {MatTooltip} from '@angular/material/tooltip';
+import {ChampionFetchingService} from '../../../services/backend/champions/champion-fetching.service';
 
 @Component({
     selector: 'app-champion-skins',
-    imports: [
-        NgOptimizedImage
-    ],
+  imports: [
+    NgOptimizedImage,
+    MatTooltip
+  ],
     templateUrl: './champion-skins.component.html',
     styleUrl: './champion-skins.component.css'
 })
 export class ChampionSkinsComponent {
   @Input() skins: ChampionSkin[] = [];
+  @Input() champion: string = '';
   activeSkin: number = 0;
+  ownedSkinPlaceholder: string = "You own this skin in your collection";
+  checkSkinPlaceholder: string = "Mark skin as owned";
+
+  private champioFetchingService: ChampionFetchingService;
 
   //swipeUtilsService: SwippeUtilsService;
 
 
-  /*constructor(swipeUtilsService: SwippeUtilsService) {
-    this.swipeUtilsService = swipeUtilsService;
-  }*/
+  constructor(champioFetchingService: ChampionFetchingService) {
+    this.champioFetchingService = champioFetchingService;
+  }
 
   goToNextSkin():void {
     if(this.activeSkin < this.skins.length -1) this.activeSkin++;
@@ -59,6 +67,17 @@ export class ChampionSkinsComponent {
     let swiperightBol = (this.elapsedTime <= this.allowedTime && this.dist >= this.threshold && Math.abs(touchobj.pageY - this.startY) <= 100);
     this.handleSwipe(swiperightBol);
     e.preventDefault();
+  }
+
+
+  toggleSkinOwned(skin: ChampionSkin) {
+    skin.owned = !skin.owned;
+    this.champioFetchingService.updateOwnedChampionSkin(this.champion,skin.num, skin.owned).subscribe({
+      next: (res) => {
+      skin.owned ?  alert(`Skin: ${skin.name} added to your collection`) : alert(`Skin: ${skin.name} removed from your collection`)
+      },
+      error: (err) => console.error(err)
+    });
   }
 
   handleSwipe(isrightswipe: boolean): void {

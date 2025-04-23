@@ -1,7 +1,7 @@
 <div class="champion-info-container">
   @if (champion) {
     <h3 class="champion-info-name">{{champion.name}} ({{champion.title}})</h3>
-    <app-champion-skins [skins]="champion.skins"></app-champion-skins>
+    <app-champion-skins [skins]="champion.skins" [champion]="champion.name"></app-champion-skins>
 
     <h4>{{champion.name}}'s story</h4>
     <p><i class="fa-solid fa-scroll"></i> {{champion.lore}}</p>
