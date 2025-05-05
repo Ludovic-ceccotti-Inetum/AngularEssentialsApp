@@ -4,7 +4,7 @@ import {TextInputComponent} from '../../../text-input/text-input.component';
 import {StandardButtonComponent} from '../../../standard-button/standard-button.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChangePasswordRequest} from '../../../../../models/backend/login/ChangePasswordRequest';
-import {LoginService} from '../../../../../services/backend/login/login.service';
+import {authService} from '../../../../../services/backend/login/auth.service';
 
 @Component({
     selector: 'app-do-reset',
@@ -15,7 +15,7 @@ import {LoginService} from '../../../../../services/backend/login/login.service'
 export class DoResetComponent {
   private route: ActivatedRoute;
   #router: Router;
-  private loginService: LoginService;
+  private loginService: authService;
 
   token: string | null = null;
   payload: ChangePasswordRequest | null = null;
@@ -25,7 +25,7 @@ export class DoResetComponent {
   newPassword: FormControl<string | null> = new FormControl('', [Validators.required, Validators.minLength(4),Validators.maxLength(10)]) ;
   confirmNewPassword: FormControl<string| null> =  new FormControl('', [Validators.required, Validators.minLength(4),Validators.maxLength(10)]);
 
-  constructor(private routed: ActivatedRoute, private router: Router, private loginServicee: LoginService ) {
+  constructor(private routed: ActivatedRoute, private router: Router, private loginServicee: authService ) {
     this.route = routed;
     this.#router = router;
     this.loginService = loginServicee

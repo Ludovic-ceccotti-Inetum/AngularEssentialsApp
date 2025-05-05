@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormsModule, Validators} from '@angular/forms';
 import {StandardButtonComponent} from '../../../standard-button/standard-button.component';
 import {TextInputComponent} from '../../../text-input/text-input.component';
-import {LoginService} from '../../../../../services/backend/login/login.service';
+import {authService} from '../../../../../services/backend/login/auth.service';
 
 @Component({
     selector: 'app-ask-reset',
@@ -15,7 +15,7 @@ import {LoginService} from '../../../../../services/backend/login/login.service'
     styleUrl: './ask-reset.component.css'
 })
 export class AskResetComponent {
-  private loginService: LoginService;
+  private loginService: authService;
 
   pageTitle: string = 'Reset your password';
   userNameLabel = 'Username';
@@ -24,7 +24,7 @@ export class AskResetComponent {
   ]);
 
 
-  constructor(loginService: LoginService) {
+  constructor(loginService: authService) {
     this.loginService = loginService;
   }
 

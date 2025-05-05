@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DoResetComponent } from './do-reset.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideRouter} from '@angular/router';
 
 describe('DoResetComponent', () => {
   let component: DoResetComponent;
@@ -8,7 +10,8 @@ describe('DoResetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DoResetComponent]
+      imports: [DoResetComponent,  HttpClientTestingModule],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
