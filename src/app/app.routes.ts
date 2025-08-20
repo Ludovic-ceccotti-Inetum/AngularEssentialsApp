@@ -8,16 +8,32 @@ import {ChampionInfoComponent} from '../components/pages/champion-info/champion-
 import {SignUpComponent} from '../components/pages/sign-up-page/sign-up.component';
 import {AskResetComponent} from '../components/pages/reset-password/ask-reset/ask-reset.component';
 import {DoResetComponent} from '../components/pages/reset-password/do-reset/do-reset.component';
+import {tokenGuard} from '../../guards/tokenGuard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
-  { path: 'reset/ask', component: AskResetComponent },
-  { path: 'reset/do', component: DoResetComponent },
+  {
+    path: 'reset',
+    children: [
+      { path: 'ask', component: AskResetComponent },
+      { path: 'do', component: DoResetComponent }
+    ]
+  },
   {path: 'signup', component: SignUpComponent},
-  { path: 'champions', component: ChampionsPageComponent },
-  {path: 'champions/:name', component: ChampionInfoComponent},
-  {path: 'my-profile', component: MyProfilePageComponent },
-  {path: 'objects', component: ObjectPageComponent },
+  {
+    path: 'champions',
+    canActivate: [tokenGuard],
+    component: ChampionsPageComponent,
+    children: [
+      {
+        path: 'details/:name',
+        canActivate: [tokenGuard],
+        component: ChampionInfoComponent
+      }
+    ]
+  },
+  {path: 'my-profile',canActivate: [tokenGuard], component: MyProfilePageComponent },
+  {path: 'objects',canActivate:[tokenGuard], component: ObjectPageComponent },
   {path: '', redirectTo:'/login',pathMatch: 'full'},
   {path: '**', component: NotFoundPageComponent}
 ];
