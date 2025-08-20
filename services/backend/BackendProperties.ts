@@ -65,6 +65,10 @@ export class BackendProperties {
     return `${this.BASE_URL.concat(this.CHAMPIONS_ENDPOINT)}`
   }
 
+  get OWNED_SKIN_ENDPOINT(): string {
+    return `${this.BASE_URL.concat(this.CHAMPIONS_ENDPOINT).concat('/skin')}` ;
+  }
+
   getLoginUrl(): string {
     return `${this.BASE_URL.concat(this.LOGIN_ENDPOINT)}`
   }

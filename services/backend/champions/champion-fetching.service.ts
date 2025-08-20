@@ -25,4 +25,14 @@ export class ChampionFetchingService {
     return this.httpClient
       .get<ChampionResponse | null>(this.backendProperties.getChampionByNameUrl(name));
   }
+
+  /**
+   * No body is required
+   * @param name
+   * @param skinId
+   * @param owned
+   */
+  updateOwnedChampionSkin(name: string, skinId: number, owned: boolean) {
+    return this.httpClient.patch(this.backendProperties.OWNED_SKIN_ENDPOINT.concat(`/${name}/${skinId}?owned=${owned}`),{});
+  }
 }

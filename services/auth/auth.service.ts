@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginService} from '../backend/login/login.service';
+import {authService} from '../backend/login/auth.service';
 import {LoginRequest} from '../../models/backend/login/LoginRequest';
 import {LoginResponse} from '../../models/backend/login/LoginResponse';
 import {Observable} from 'rxjs';
@@ -10,9 +10,9 @@ import {Observable} from 'rxjs';
 })
 export class AuthService {
 
-  private loginService: LoginService;
+  private loginService: authService;
 
-  constructor(loginService: LoginService) {
+  constructor(loginService: authService) {
     this.loginService = loginService;
   }
 

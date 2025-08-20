@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
-import { StandardButtonComponent } from '../../standard-button/standard-button.component';
-import { TextInputComponent } from '../../text-input/text-input.component';
-import { StandardSelectComponent } from '../../standard-select/standard-select.component';
+import {StandardButtonComponent} from '../../standard-button/standard-button.component';
+import {TextInputComponent} from '../../text-input/text-input.component';
+import {StandardSelectComponent} from '../../standard-select/standard-select.component';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 import {AvalaibleOption} from '../../../../models/AvalaibleOption';
@@ -11,23 +11,25 @@ import {SignupResponse} from '../../../../models/backend/signup/SignupResponse';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {LoginRequest} from '../../../../models/backend/login/LoginRequest';
 import {ErrorMessageDto} from '../../../../models/backend/errors/ErrorMessageDto';
+import {lastValueFrom} from 'rxjs';
+import {LoginResponse} from '../../../../models/backend/login/LoginResponse';
 
 @Component({
-    selector: 'app-sign-up',
-    imports: [StandardSelectComponent, StandardButtonComponent, TextInputComponent],
-    templateUrl: './sign-up.component.html',
-    styleUrl: './sign-up.component.css'
+  selector: 'app-sign-up',
+  imports: [StandardSelectComponent, StandardButtonComponent, TextInputComponent],
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent{
+export class SignUpComponent {
 
-  #router:Router;
+  #router: Router;
 
   pageTitle: string = 'Create an account';
   userNameLabel: string = 'Username';
   passwordlabel: string = 'Password';
-  emailLabel:string='Email';
+  emailLabel: string = 'Email';
   wrongLogin: boolean = false;
-  errorMessage:ErrorMessageDto | null = null;
+  errorMessage: ErrorMessageDto | null = null;
 
   regionOptions: AvalaibleOption[] = [
     {displayName: 'West Europe', value: 'EUW'},
@@ -36,24 +38,24 @@ export class SignUpComponent{
     {displayName: 'Brazil', value: 'BR'}
   ];
 
-  userName: FormControl<string | null> = new FormControl('',[
+  userName: FormControl<string | null> = new FormControl('', [
     Validators.required, Validators.minLength(4), Validators.maxLength(50)
   ]);
 
-  password: FormControl<string | null> = new FormControl('',[
+  password: FormControl<string | null> = new FormControl('', [
     Validators.required, Validators.minLength(4), Validators.maxLength(12)
   ]);
 
-  email: FormControl<string | null> = new FormControl('',[
-    Validators.required,Validators.email, Validators.minLength(4), Validators.maxLength(50)
+  email: FormControl<string | null> = new FormControl('', [
+    Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(50)
   ]);
 
-  region: FormControl<string | null> = new FormControl(this.regionOptions[0].value,[
+  region: FormControl<string | null> = new FormControl(this.regionOptions[0].value, [
     Validators.required
-]);
+  ]);
 
 
-  constructor(private signupService: SignupService, private authService:AuthService) {
+  constructor(private signupService: SignupService, private authService: AuthService) {
     this.#router = inject(Router);
   }
 
@@ -66,29 +68,36 @@ export class SignUpComponent{
   }
 
   onEmailChange(value: string): void {
-    this.email.setValue(value.trim());
+      this.email.setValue(value.trim());
   }
 
   onRegionUpdate(value: string): void {
     this.region.setValue(value.trim());
   }
 
-  onSignupSucess = (res:SignupResponse) => {
+  onSignupSucess = (res: SignupResponse): void => {
     const login: LoginRequest = {
-      userName:res?.username,
+      userName: res?.username,
       password: this.password.getRawValue()
     }
-    this.authService.createTokenFromLogin(login).subscribe({
-      next:(res) => {
-        this.wrongLogin = false;
-        sessionStorage.setItem('token',JSON.stringify(res));
-        this.#router.navigate(['my-profile']);
-      },
-      error: () => this.wrongLogin = true
-    });
+    try {
+      lastValueFrom(this.authService.createTokenFromLogin(login)).then((res: LoginResponse | null): void => {
+        if (res !== null && res.token) {
+          this.wrongLogin = false;
+          sessionStorage.setItem('token', JSON.stringify(res));
+          this.#router.navigate(['my-profile']);
+        } else {
+          console.error('No token provided!');
+          this.wrongLogin = true;
+        }
+      });
+    } catch (e) {
+      console.error(e);
+      this.wrongLogin = true;
+    }
   }
 
-  onSignupError = (err:any) => {
+  onSignupError = (err: any) => {
     console.error(err);
     this.errorMessage = err.error;
   };
@@ -98,23 +107,25 @@ export class SignUpComponent{
     const isPasswordValid = this.password.valid && this.password.value !== null;
     const isEmailValid = this.email.valid && this.email.value !== null;
 
-    if(isUserNameValid && isPasswordValid && isEmailValid && this.region.valid) {
-      const payload:SignupRequest = {
+    if (isUserNameValid && isPasswordValid && isEmailValid && this.region.valid) {
+      const payload: SignupRequest = {
         userName: this.userName.getRawValue(),
         password: this.password.getRawValue(),
         email: this.email.getRawValue(),
         region: this.region.getRawValue()
       }
-      this.signupService.signup(payload).subscribe({
-        next:(res) => {
-          if (res) {
-            this.onSignupSucess(res);
-          }
-      },
-        error: (err) => {
-         this.onSignupError(err);
+
+      try {
+        const res: SignupResponse | null = await lastValueFrom(this.signupService.signup(payload));
+        if (res !== null) {
+          this.onSignupSucess(res);
+        } else {
+          this.onSignupError('Error sent by the server!')
+        }
+      } catch (e) {
+        this.onSignupError(e);
       }
-      });
+
     }
   }
 }

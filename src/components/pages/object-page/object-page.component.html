@@ -1,1 +1,11 @@
-<p>object-page works!</p>
+<div class="objects-container">
+  @if (byCategories.size > 0) {
+    @for (category of categories; track category) {
+        <app-object-category-items [category]="category" [values]="byCategories.get(category)" />
+    }
+  } @else {
+    <p>No data have been found!</p>
+  }
+
+</div>
+

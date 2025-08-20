@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AskResetComponent } from './ask-reset.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AskResetComponent', () => {
   let component: AskResetComponent;
@@ -8,7 +9,7 @@ describe('AskResetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AskResetComponent]
+      imports: [AskResetComponent,  HttpClientTestingModule]
     })
     .compileComponents();
 

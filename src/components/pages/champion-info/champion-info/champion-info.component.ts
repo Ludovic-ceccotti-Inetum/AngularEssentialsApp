@@ -6,6 +6,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {TextInfoComponent} from '../../../text-info/text-info.component';
 import {TagsWithIconComponent} from '../../../tags-with-icon/tags-with-icon.component';
 import { ChampionSkinsComponent } from '../../../champion-skins/champion-skins.component';
+import {firstValueFrom} from 'rxjs';
 
 @Component({
     selector: 'app-champion-info',
@@ -28,16 +29,19 @@ export class ChampionInfoComponent implements OnInit {
 
   @Input()
   set name(name: string) {
-    this.championFecthingService.getChampionByName(name).subscribe({
-      next: (res) => {
+    try {
+      firstValueFrom(this.championFecthingService.getChampionByName(name)).then((res: ChampionResponse | null): void => {
         if (res !== null) {
           this.champion = res;
-          //TODO transform url with champions with ' in the name
           this.championPic = this.champion?.skins[0]?.skinURI.toString();
+        } else {
+          console.error('No champion provided!')
         }
-      },
-      error: (err) => console.error(err)
-    })
+      });
+    } catch (e) {
+      console.error(e);
+    }
+
   }
 
   ngOnInit() {

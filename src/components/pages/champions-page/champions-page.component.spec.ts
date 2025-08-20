@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChampionsPageComponent } from './champions-page.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ObjectListResponse} from '../../../../models/backend/objects/ObjectListResponse';
+import {ObjectDto} from '../../../../models/backend/objects/ObjectDto';
 
 describe('ChampionsPageComponent', () => {
   let component: ChampionsPageComponent;
@@ -8,7 +11,7 @@ describe('ChampionsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChampionsPageComponent]
+      imports: [ChampionsPageComponent,  HttpClientTestingModule]
     })
     .compileComponents();
 

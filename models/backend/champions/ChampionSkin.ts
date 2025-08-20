@@ -5,4 +5,5 @@ export interface ChampionSkin {
   name: string;
   chromas: boolean;
   skinURI: URL;
+  owned: boolean;
 }

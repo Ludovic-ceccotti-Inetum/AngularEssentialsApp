@@ -9,7 +9,7 @@ import {ChangePasswordRequest} from '../../../models/backend/login/ChangePasswor
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class authService {
 
   private backendProperties: BackendProperties;
 
