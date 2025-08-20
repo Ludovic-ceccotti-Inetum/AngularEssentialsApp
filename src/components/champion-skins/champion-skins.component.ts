@@ -22,9 +22,6 @@ export class ChampionSkinsComponent {
 
   private champioFetchingService: ChampionFetchingService;
 
-  //swipeUtilsService: SwippeUtilsService;
-
-
   constructor(champioFetchingService: ChampionFetchingService) {
     this.champioFetchingService = champioFetchingService;
   }

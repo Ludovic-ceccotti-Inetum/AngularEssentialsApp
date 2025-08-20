@@ -1,0 +1,8 @@
+<div class="object-category-container">
+    <p><i class="fa-solid fa-plus" style="color: #f21859;" (click)="toggleShow()"><h3>{{ category }}</h3></i></p>
+    @if (showObjects && values !== undefined) {
+      @for (value of values; track value) {
+        <app-object-details [object]="value"/>
+      }
+    }
+</div>

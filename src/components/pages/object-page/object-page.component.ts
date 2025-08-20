@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ObjectFetchingService} from '../../../../services/backend/objects/object-fetching.service';
 import {ObjectListResponse} from '../../../../models/backend/objects/ObjectListResponse';
 import {firstValueFrom} from 'rxjs';
 import {ObjectDto} from '../../../../models/backend/objects/ObjectDto';
 import {ObjectEntry} from '../../../../models/backend/objects/ObjectEntry';
-
+import {ObjectCategoryItemsComponent} from '../../objects/object-category-items/object-category-items.component';
 
 @Component({
-    selector: 'app-object-page',
-    imports: [],
-    templateUrl: './object-page.component.html',
-    styleUrl: './object-page.component.css'
+  selector: 'app-object-page',
+  templateUrl: './object-page.component.html',
+  imports: [
+    ObjectCategoryItemsComponent
+  ],
+  styleUrl: './object-page.component.css'
 })
-export class ObjectPageComponent {
+export class ObjectPageComponent implements OnInit{
 
   private objectFetchingService: ObjectFetchingService;
 
@@ -21,31 +23,28 @@ export class ObjectPageComponent {
 
   private _byCategories:Map<string,ObjectEntry[]> = new Map<string, ObjectEntry[]>();
 
-
-  get byCategories(): Map<string, ObjectEntry[]> {
-    return this._byCategories;
-  }
-
-  set byCategories(value: Map<string, ObjectEntry[]>) {
-    this._byCategories = value;
-  }
+  private _categories: string[] = [];
 
   constructor(objectFetchingService: ObjectFetchingService) {
     this.objectFetchingService = objectFetchingService;
-    firstValueFrom(this.objectFetchingService.getLocalObjects())
-      .then(res => this.onLoadingSuccess(res))
-      .catch(e => console.error(e));
+  }
+
+  get categories(): string[] {
+    return this._categories;
+  }
+
+  get byCategories(): Map<string, ObjectEntry[]> {
+    return this._byCategories !== undefined ? this._byCategories : new Map<string, ObjectEntry[]>();
   }
 
   onLoadingSuccess(res: ObjectListResponse | null): void {
-    console.log(res)
     if(res !== null) {
       this.objectResponse = res;
       this.objects = Object.values(res.data);
       this.createCategories();
       this.groupByCategory();
     } else {
-      console.log('No data provided!');
+      console.error('No data provided!');
     }
   }
 
@@ -67,16 +66,19 @@ export class ObjectPageComponent {
        this.processTags(key,value);
       });
     }
-    console.log(this._byCategories);
+    this._categories = Array.from(this._byCategories.keys());
   }
-
 
 
   processTags(key: string, value: ObjectDto): void {
+   this.addToCategory(value.tags[0],key,value);
+  }
+
+  /*processTags(key: string, value: ObjectDto): void {
     value.tags.forEach(tag => {
       this.addToCategory(tag, key, value);
     });
-  }
+  }*/
 
 
   addToCategory(tag: string, key: string, value: ObjectDto): void {
@@ -85,6 +87,12 @@ export class ObjectPageComponent {
     } else {
       this._byCategories.set(tag, [{ id: key, value: value }]);
     }
+  }
+
+  ngOnInit(): void {
+    firstValueFrom(this.objectFetchingService.getAllObjects())
+      .then(res => this.onLoadingSuccess(res))
+      .catch(e => console.error(e));
   }
 
 }

@@ -9,5 +9,6 @@ export interface ObjectDto {
   tags: string[];
   maps: { [key: string]: boolean };
   stats: { [key: string]: number };
+  pictureUrl: string;
 
 }
