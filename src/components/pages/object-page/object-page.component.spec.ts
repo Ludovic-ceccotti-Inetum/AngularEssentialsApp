@@ -49,7 +49,8 @@ describe('ObjectPageComponent', () => {
     },
     stats: {
       "FlatMovementSpeedMod": 25
-    }
+    },
+    pictureUrl: "myUrl.jpg"
   }
 
   const mockData = new Map<string, ObjectDto>([[mockItemId,mockObjectDto]]);
@@ -67,7 +68,7 @@ describe('ObjectPageComponent', () => {
   }
 
   beforeEach(async () => {
-    const spyFetchinfService = jasmine.createSpyObj('ObjectFetchingService',['getLocalObjects'])
+    const spyFetchinfService = jasmine.createSpyObj('ObjectFetchingService',['getAllObjects'])
     await TestBed.configureTestingModule({
       imports: [ObjectPageComponent,  HttpClientTestingModule],
       providers: [{provide: ObjectFetchingService, useValue: spyFetchinfService}]
@@ -83,9 +84,8 @@ describe('ObjectPageComponent', () => {
 
   it('should create', async () => {
     expect(component).toBeTruthy();
-    expect(fetchingSpy.getLocalObjects).toHaveBeenCalled();
+   expect(fetchingSpy.getAllObjects).toHaveBeenCalled();
   });
-
 
 
 });
