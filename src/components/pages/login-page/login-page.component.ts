@@ -21,12 +21,20 @@ import {LoginResponse} from '../../../../models/backend/login/LoginResponse';
 export class LoginPageComponent {
 
   authService: AuthService = inject(AuthService);
-  #router = inject(Router);
+  #router: Router = inject(Router);
 
-  pageTitle: string = 'Login';
-  userNameLabel: string = 'Username';
-  passwordlabel: string = 'Password';
+  pageTitle: string = $localize `Login`;
+  userNameLabel: string = $localize `Username`;
+  passwordlabel: string = $localize `Password`;
+  loginButtonText: string = $localize `Login`
   wrongLogin: boolean = false;
+
+
+
+  /*constructor() {
+    this.userNameLabel = $localize`Username`;
+    this.passwordlabel = $localize`Password`;
+  }*/
 
   userName: FormControl<string | null> = new FormControl('', [
     Validators.required, Validators.minLength(4), Validators.maxLength(50)
@@ -34,6 +42,7 @@ export class LoginPageComponent {
   password: FormControl<string | null> = new FormControl('', [
     Validators.required, Validators.minLength(4), Validators.maxLength(12)
   ]);
+
 
   onUserNameUpdate(value: string) {
     this.userName.setValue(value.trim());
